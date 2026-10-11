@@ -1,0 +1,24 @@
+# Dữ liệu dung lượng lớn (vượt quá giới hạn 100MB của GitHub)
+data/
+*.tsv.gz
+*.csv.gz
+
+# Môi trường ảo Python
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Hệ điều hành & IDE cấu hình
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
