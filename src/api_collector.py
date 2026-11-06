@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_api_key() -> str:
-    """Lấy OMDb API key từ biến môi trường OMDb_API_KEY hoặc OMDB_API_KEY.
+    """Lấy OMDb API key từ biến môi trường OMDb_API_KEY hoặc file .env.
 
     Returns:
         str: OMDb API Key hợp lệ.
@@ -29,9 +29,19 @@ def get_api_key() -> str:
     """
     api_key = os.getenv("OMDb_API_KEY") or os.getenv("OMDB_API_KEY")
     if not api_key:
+        env_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
+        if os.path.exists(env_file):
+            with open(env_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith("OMDb_API_KEY=") or line.startswith("OMDB_API_KEY="):
+                        api_key = line.split("=", 1)[1].strip("'\" ")
+                        break
+
+    if not api_key:
         raise ValueError(
             "Biến môi trường 'OMDb_API_KEY' chưa được thiết lập. "
-            "Vui lòng chạy: export OMDb_API_KEY='<your_api_key>'"
+            "Vui lòng tạo file .env hoặc chạy: export OMDb_API_KEY='<your_api_key>'"
         )
     return api_key.strip()
 

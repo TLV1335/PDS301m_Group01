@@ -3,6 +3,20 @@ data/
 *.tsv.gz
 *.csv.gz
 
+# Environment variables & secrets
+.env
+.env.*
+
+# Cơ sở dữ liệu và bộ nhớ đệm tạm thời
+*.sqlite3
+*.db
+cache/
+*/cache/
+PDS301m_Group01/02_Databases/
+
+# Repo riêng của thành viên nhóm (đã có repo độc lập trên GitHub)
+Genre_Lens/
+
 # Môi trường ảo Python
 .venv/
 venv/
